@@ -1,6 +1,6 @@
 # Word Finder (Groovy CLI)
 
-This is a simple Groovy command-line application that searches for a specific word inside a file and reports how many matches were found.
+This application searches for a specific word within files in a given directory and optionally replaces it.
 
 ## 📦 Requirements
 
@@ -39,56 +39,71 @@ groovy -version
 
 Execute the script using the Groovy CLI:
 
+## Usage
+
 ```bash
-groovy init.groovy
+groovy init.groovy <path> <word> <replace>
 ```
 
-## 🧠 How It Works
+### Parameters
 
-1. The program will prompt you to enter a full file path.
-2. Then, it will ask for a word to search.
-3. It scans the file and counts how many times the word appears.
-4. Finally, it displays the results.
+* `<path>` – The directory to search in
+* `<word>` – The word to look for
+* `<replace>` – The word that will replace the matched word
 
-## 📌 Example Usage
+## How It Works
 
+1. The application scans all files within the specified directory.
+2. It searches for occurrences of the given word.
+3. It counts how many matches are found.
+4. It outputs:
+
+   * The file name
+   * Number of matches
+   * Original file content
+   * Updated content after replacement
+
+## Example
+
+```bash
+groovy init.groovy test test test
 ```
-Enter a full directory path: test/first-test.txt
-Enter a word to find: wew
-```
 
-### Example Test File Content
+### Test File
 
-```
-wew
-wew123
-wew456
+`test/first-test.txt` contains:
+
+```text
+test
+test123
+test456
 this is me coding groovy
 ```
 
 ### Output
 
+```text
+File: test/first-test.txt
+Matches: 3
+
+---- Original ----
+Original:
+    test
+    test123
+    test456
+    this is me coding groovy
+
+---- Replace ----
+Replace:
+    test
+    test123
+    test456
+    this is me coding groovy
 ```
-File found: test/first-test.txt and word found: wew
-Here are 3 matches found
-```
 
-## 🧪 Sample Run
+## Notes
 
-```
-Enter a full directory path: /first-test.txt
-Enter a word to find: wew
-File found: /first-test.txt and word found: wew
-Here are 3 matches found
-```
-
-## 🛠 Notes
-
-* A sample test file is available at `test/first-test.txt`.
-* You are free to modify the test file or create your own.
-* Ensure the file path you enter exists and is accessible.
-
-## 📄 License
-
-This project is open for modification and personal use.
+* You are free to modify the test files or create new ones.
+* Nested directories are supported, but use them at your own discretion.
+* Always review changes when using the replace feature, as it may overwrite content.
 
